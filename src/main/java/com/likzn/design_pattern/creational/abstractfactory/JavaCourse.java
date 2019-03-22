@@ -10,4 +10,6 @@ public class JavaCourse implements ICourse {
     public void produce() {
         System.out.println("Java");
     }
+
 }
+
