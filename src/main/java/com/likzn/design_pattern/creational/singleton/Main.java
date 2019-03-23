@@ -1,7 +1,6 @@
 package com.likzn.design_pattern.creational.singleton;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.io.*;
 
 /**
  * @auther: Li jx
@@ -9,20 +8,33 @@ import java.util.concurrent.Executors;
  * @description:
  */
 public class Main {
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, IOException, ClassNotFoundException {
 //        LazySingleton lazySingleton = LazySingleton.getInstance();
 
-        ExecutorService thread = Executors.newCachedThreadPool();
-        for (int i = 0; i < 2; i++) {
-            thread.execute(()->{
-                LazyDoubleCheckSingleton lazyDoubleCheckSingleton = LazyDoubleCheckSingleton.getInstance();
-                System.out.println(Thread.currentThread().getName() + "" + lazyDoubleCheckSingleton);
+    //        ExecutorService thread = Executors.newCachedThreadPool();
+    //        for (int i = 0; i < 2; i++) {
+    //            thread.execute(()->{
+    //                StaticInnerSingleton staticInnerSingleton = StaticInnerSingleton.getInstance();
+    //                System.out.println(Thread.currentThread().getName() + "" + staticInnerSingleton);
+    //
+    //            });
+    //
+    //        }
+    //
+    //        thread.shutdown();
+    //        System.out.println("end");
+        HungrySingleton hungrySingleton = HungrySingleton.getInstance();
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream("single"));
+        objectOutputStream.writeObject(hungrySingleton);
 
-            });
+        File file = new File("single");
+        ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(file));
 
-        }
+        HungrySingleton instance = (HungrySingleton) objectInputStream.readObject();
+        System.out.println(hungrySingleton);
+        System.out.println(instance);
+        System.out.println(instance == hungrySingleton);
 
-        thread.shutdown();
-        System.out.println("end");
+
     }
 }
