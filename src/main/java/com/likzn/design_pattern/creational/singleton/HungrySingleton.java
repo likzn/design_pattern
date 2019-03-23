@@ -10,8 +10,10 @@ import java.io.Serializable;
 public class HungrySingleton implements Serializable {
     private static final HungrySingleton instance = new HungrySingleton();
 
-    HungrySingleton() {
-
+    private HungrySingleton() {
+        if (instance != null) {
+            throw new RuntimeException("反射");
+        }
     }
 
     public static HungrySingleton getInstance() {
