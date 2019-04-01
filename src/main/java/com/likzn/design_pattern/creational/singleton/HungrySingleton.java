@@ -7,7 +7,7 @@ import java.io.Serializable;
  * @date: 2019/3/23 14:31
  * @description:
  */
-public class HungrySingleton implements Serializable {
+public class HungrySingleton implements Serializable,Cloneable {
     private static final HungrySingleton instance = new HungrySingleton();
 
     private HungrySingleton() {

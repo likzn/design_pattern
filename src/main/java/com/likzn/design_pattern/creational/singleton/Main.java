@@ -50,6 +50,9 @@ public class Main {
         EnumInstance enumInstance = EnumInstance.getInstance();
         System.out.println(enumInstance);
         enumInstance.print();
+        HungrySingleton hungrySingleton = HungrySingleton.getInstance();
+        Object o = new Object();
+
 
     }
 }
