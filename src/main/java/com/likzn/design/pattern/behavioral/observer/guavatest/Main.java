@@ -12,5 +12,6 @@ public class Main {
         Question question = new Question("怎么实现观察者", "asd");
         course.register(teacher);
         course.post(question);
+
     }
 }
